@@ -21,12 +21,11 @@ public class ProfessorenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professoren);
         db = new DBZugriff(this,"VorLePlaner");
-        final Context thisActivity = this;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setTitle("Hinzufügen");
                 builder.setView(R.layout.input_professoren);
 
