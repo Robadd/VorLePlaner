@@ -1,6 +1,7 @@
 package com.example.mi.vorleplaner;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class DBZugriff extends SQLiteOpenHelper {
     public static final String COLUMN_VORLESUNGEN_STARTTIME = "Startzeit";
     public static final String COLUMN_VORLESUNGEN_ENDTIME = "Endzeit";
 
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
     public static final String TAG = "DBZugriff";
 
     public DBZugriff(Context activity, String dbName) {
@@ -64,5 +65,16 @@ public class DBZugriff extends SQLiteOpenHelper {
             db = null;
         }
         super.close();
+    }
+
+    public static Cursor createListViewCursor(String tabelle) {
+        String[] spalten = null;
+        if(tabelle == TABLE_PROFESSOREN){
+            spalten = new String[]{COLUMN_ID,COLUMN_PROFESSOREN_NAME};
+        }else if(tabelle == TABLE_VORLESUNGEN){
+
+        }
+
+        return db.query(tabelle, spalten, null,null,null,null, COLUMN_ID);
     }
 }

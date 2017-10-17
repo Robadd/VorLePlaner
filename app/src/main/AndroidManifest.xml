@@ -19,8 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfessorenActivity" />
-        <activity android:name=".VorlesungenActivity" />
+        <activity
+            android:name=".ProfessorenActivity"
+            android:label="Professoren"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".VorlesungenActivity"
+            android:label="Vorlesungen"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

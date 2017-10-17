@@ -1,6 +1,7 @@
 package com.example.mi.vorleplaner;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         db = new DBZugriff(this, DBZugriff.DB_NAME);
+
+
     }
 
     @Override
