@@ -2,6 +2,7 @@ package com.example.mi.vorleplaner;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class ProfessorenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professoren);
-        dbZugriff = new DBZugriff(this,"VorLePlaner");
+        dbZugriff = new DBZugriff(this, DBZugriff.DB_NAME);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +57,7 @@ public class ProfessorenActivity extends AppCompatActivity {
 
                 builder.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener(){
                     @Override
-                    public void onClick(DialogInterface dialog, int which){
-
-                    }
+                    public void onClick(DialogInterface dialog, int which){}
                 });
 
                 builder.show();
@@ -91,7 +90,12 @@ public class ProfessorenActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Cursor tmpCursor = (Cursor)adapterView.getItemAtPosition(i);
 
-                Log.d(TAG, tmpCursor.getString(1));
+                Intent intent = new Intent(ProfessorenActivity.this, SingleDatasetProfessoren.class);
+                Bundle b = new Bundle();
+                b.putLong("id", tmpCursor.getLong(0));
+                b.putString("name", tmpCursor.getString(1));
+                intent.putExtras(b);
+                ProfessorenActivity.this.startActivity(intent);
             }
         });
     }
